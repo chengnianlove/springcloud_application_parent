@@ -21,7 +21,7 @@
   [点击下载linux安装包nacos](https://github.com/alibaba/nacos/releases/download/2.0.3/nacos-server-2.0.3.tar.gz)
 
 * 运行nacos
-  ```shell
+  ```
     tar -zxvf nacos-server-2.0.3.tar.gz # 解压
     mv nacos-server-2.0.3 /usr/local/nacos 
     cd /usr/local/nacos
@@ -35,14 +35,14 @@
   ```
   ![img.png](img.png)
 * 引入nacos依赖
-  ```xml
+  ```
   <dependency>
     <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
   </dependency>
   ```
 * 添加spring配置
-  ```yaml
+  ```
   server:
     port: 8080
   spring:
