@@ -12,9 +12,13 @@ spring:
         refresh-enabled: true
       discovery:
         metadata:
-          verson: 1.0.2
+          verson: 1.0.3
           active: ${spring.profiles.active}
           deployTime: ${DEPLOY_ENV}
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: 192.168.22.126:19981
   profiles:
     active: dev
   application:

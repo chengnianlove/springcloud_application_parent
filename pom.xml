@@ -12,6 +12,8 @@
         <module>user</module>
         <module>product</module>
         <module>common</module>
+        <module>sentinel</module>
+        <module>gateway</module>
     </modules>
 
     <parent>
