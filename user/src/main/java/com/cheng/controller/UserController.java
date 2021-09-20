@@ -1,5 +1,6 @@
 package com.cheng.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cheng.feignClient.ProductFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ public class UserController {
 
     @RequestMapping("getProduct")
     @ResponseBody
+    @SentinelResource("getProduct")
     public String getProduct(String id){
         return productFeign.getProductName(id);
     }
