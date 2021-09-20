@@ -1,0 +1,10 @@
+server:
+  port: 18810
+spring:
+  application:
+    name: PRODUCT
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 192.168.22.126:9981
