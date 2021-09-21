@@ -42,24 +42,24 @@
   </dependency>
   ```
 * 添加spring配置
-  ```yaml
-  spring:
+```
+spring:
     cloud:
-      nacos:
-        server-addr: 192.168.22.126:9981
-        username: nacos
-        password: nacos
+        nacos:
+            server-addr: 192.168.22.126:9981
+            username: nacos
+            password: nacos
         discovery:
-          metadata:
-            verson: 1.0.3
-            active: ${spring.profiles.active}
-          namespace: 54c66f09-e2d8-4ddd-b3e9-f59856c7401b
-          group: user
+            metadata:
+                verson: 1.0.3
+                active: ${spring.profiles.active}
+            namespace: 54c66f09-e2d8-4ddd-b3e9-f59856c7401b
+            group: user
     application:
-      name: USER
-  server:
-    port: 18800  
-  ```
+        name: USER
+    server:
+        port: 18800  
+```
 * 启动项目， 查看服务列表，成功注册
 ![img_1.png](readmeImg/nacos-service-list.png)
 ### 2. 配置中心 nacos
