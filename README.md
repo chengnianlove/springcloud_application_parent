@@ -21,11 +21,11 @@
   [点击下载linux安装包nacos](https://github.com/alibaba/nacos/releases/download/2.0.3/nacos-server-2.0.3.tar.gz)
 
 * 运行nacos
-  ```
+  ```shell
     tar -zxvf nacos-server-2.0.3.tar.gz # 解压
     mv nacos-server-2.0.3 /usr/local/nacos 
     cd /usr/local/nacos
-    bin/startup.sh -m standalone  #启动单机版
+    bin/startup.sh -m standalone  #启动单机版nacos
   ```
 * 查看nacos界面
   ```
