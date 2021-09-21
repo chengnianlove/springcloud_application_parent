@@ -75,7 +75,7 @@
   * 选择springcloud_application创建配置文件，user.yml, user-dev.yml，user-prod.yml
   ![img_3.png](readmeImg/nacos-config-list.png)
     
-    * user.yml
+  * user.yml
     
 ```yaml
     logging:
@@ -84,14 +84,14 @@
         com.alibaba.nacos.client.naming: warn
 ```
     
-    * user-dev.yml
+  * user-dev.yml
     
 ```yaml
     user:
       name: cheng-test
 ```
     
-    * user-prod.yml
+  * user-prod.yml
     
 ```yaml
     user:
@@ -189,14 +189,14 @@
       active: dev
 ```
 
-    ![img.png](readmeImg/config-dev-result.png)
+![img.png](readmeImg/config-dev-result.png)
   * 设置prod  加载user-prod.yml user.yml
 
 ```yaml 
     profiles:
       active: prod
 ```
-  ![config-prod-result](readmeImg/config-prod-result.png)
+![config-prod-result](readmeImg/config-prod-result.png)
 
 ### 3. 服务调用 openfeign
 
