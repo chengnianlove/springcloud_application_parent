@@ -35,12 +35,12 @@
   ```
   ![img.png](readmeImg/nacos-main_page.png)
 * 引入nacos依赖
-  ```
+  ``xml
   <dependency>
     <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
   </dependency>
-  ```
+  ``
 * 添加spring配置
 `
     spring:
