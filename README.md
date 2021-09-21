@@ -35,12 +35,12 @@
   ```
   ![img.png](readmeImg/nacos-main_page.png)
 * 引入nacos依赖
-  ``xml
-  <dependency>
-    <groupId>com.alibaba.cloud</groupId>
-    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-  </dependency>
-  ``
+`
+    <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+`
 * 添加spring配置
 `
     spring:
@@ -70,35 +70,35 @@
   ![img_3.png](readmeImg/nacos-config-list.png)
     
     * user.yml
-    ```yaml
+    `
     logging:
-      level:
-        com.alibaba.nacos.client.config.impl: warn # 禁止频繁打印nacos心跳日志
-        com.alibaba.nacos.client.naming: warn
-    ```
+        level:
+            com.alibaba.nacos.client.config.impl: warn # 禁止频繁打印nacos心跳日志
+            com.alibaba.nacos.client.naming: warn
+    `
     
     * user-dev.yml
-    ```yaml
-      user:
-        name: cheng-test
-    ```
+    `
+        user:
+            name: cheng-test
+    `
     
     * user-prod.yml
-    ```yaml
-    user:
-      name: cheng-prod
-    ```
+    `
+        user:
+            name: cheng-prod
+    `
     
 * 引入依赖
   
-  ```xml
-  <dependency>
-    <groupId>com.alibaba.cloud</groupId>
-    <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-  </dependency>
-  ```
+  `
+    <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+  `
 * 代码
-  ```java
+`
   package com.cheng;
   
   import org.springframework.beans.factory.annotation.Value;
@@ -110,8 +110,8 @@
   import org.springframework.web.bind.annotation.RestController;
   
   /**
-  * @author create by chengnian On 2021/9/19 15:00
-  */
+   * @author create by chengnian On 2021/9/19 15:00
+   */
   @SpringBootApplication
   @RestController
   @RefreshScope  // 自动刷新注解
@@ -133,6 +133,7 @@
     return "user, port=" + port + "name=" + name;
     }
   }
+`
 * spring配置文件
 ```yaml
 spring:
