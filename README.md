@@ -42,7 +42,7 @@
   </dependency>
   ```
 * 添加spring配置
-```
+``
     spring:
         cloud:
             nacos:
@@ -59,7 +59,7 @@
             name: USER
         server:
             port: 18800  
-```
+``
 * 启动项目， 查看服务列表，成功注册
 ![img_1.png](readmeImg/nacos-service-list.png)
 ### 2. 配置中心 nacos
