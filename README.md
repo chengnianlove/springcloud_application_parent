@@ -25,7 +25,7 @@
     tar -zxvf nacos-server-2.0.3.tar.gz # 解压
     mv nacos-server-2.0.3 /usr/local/nacos 
     cd /usr/local/nacos
-    bin/startup.sh -m standalone  #启动单机版nacos
+    bin/startup.sh -m standalone  #启动单机版nacos 集群版启动请查看官方文档
   ```
 * 查看nacos界面
   ```
