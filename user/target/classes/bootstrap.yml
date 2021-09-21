@@ -14,13 +14,14 @@ spring:
         metadata:
           verson: 1.0.3
           active: ${spring.profiles.active}
-          deployTime: ${DEPLOY_ENV}
+        namespace: 54c66f09-e2d8-4ddd-b3e9-f59856c7401b
+        group: user
     sentinel:
       transport:
         port: 8719
         dashboard: 192.168.22.126:19981
   profiles:
-    active: dev
+    active: prod
   application:
     name: USER
 server:
