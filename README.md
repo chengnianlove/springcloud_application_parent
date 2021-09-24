@@ -198,7 +198,10 @@
 ```
 ![config-prod-result](readmeImg/config-prod-result.png)
 
-### 3. 服务调用 openfeign
+### 3. 服务调用 openFeign
+
+netflix停止对feign的维护，springcloud团队在feign的基础上维护openFeign，
+延用的feign的功能实现服务之间的远程调用以及负载均衡功能。
 
 ### 4. 服务熔断以及限流 sentinel
 
