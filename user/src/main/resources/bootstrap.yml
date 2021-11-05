@@ -15,7 +15,6 @@ spring:
           verson: 1.0.3
           active: ${spring.profiles.active}
         namespace: 54c66f09-e2d8-4ddd-b3e9-f59856c7401b
-        group: user
     sentinel:
       transport:
         port: 8719
@@ -24,5 +23,19 @@ spring:
     active: prod
   application:
     name: USER
+  elasticsearch:
+    rest:
+      uris: 192.168.22.126:9200,192.168.22.127:9200
+      connection-timeout: 1s
+      read-timeout: 30s
 server:
   port: 18800
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+  hystrix:
+    enabled: true

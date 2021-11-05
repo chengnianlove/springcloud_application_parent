@@ -203,6 +203,180 @@
 netflix停止对feign的维护，springcloud团队在feign的基础上维护openFeign，
 延用的feign的功能实现服务之间的远程调用以及负载均衡功能。
 
+* **引入依赖**
+```xml
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+  </dependency>
+```
+
+* **使用注解`@EnableFeignClients`开始openFeign**
+
+```java
+  package com.cheng;
+  
+  import org.springframework.beans.factory.annotation.Value;
+  import org.springframework.boot.SpringApplication;
+  import org.springframework.boot.autoconfigure.SpringBootApplication;
+  import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+  import org.springframework.cloud.context.config.annotation.RefreshScope;
+  import org.springframework.cloud.openfeign.EnableFeignClients;
+  import org.springframework.web.bind.annotation.RequestMapping;
+  import org.springframework.web.bind.annotation.RestController;
+  
+  @SpringBootApplication
+  @RestController
+  @RefreshScope
+  @EnableDiscoveryClient
+  @EnableFeignClients // 开启openFeign
+  public class UserApplication {
+  
+      @Value("${server.port}")
+      private String port;
+  
+      public static void main(String[] args) {
+          SpringApplication.run(UserApplication.class, args);
+      }
+  
+      @RequestMapping
+      public String get(){
+          return "user, port=" + port;
+      }
+  }
+
+```
+
+* **创建product服务**
+  
+引入依赖
+
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>com.cheng</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+```
+
+  创建配置文件bootstrap.yml
+
+```yaml
+server:
+  port: 18810
+spring:
+  application:
+    name: PRODUCT
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 192.168.22.126:9981
+```
+
+启动类`ProductApplication.java`
+
+```java
+  @SpringBootApplication
+  @RestController
+  public class ProductApplication {
+  
+      @Value("${server.port}")
+      private String port;
+  
+      public static void main(String[] args) {
+          SpringApplication.run(ProductApplication.class, args);
+      }
+  
+      @RequestMapping
+      public String get(){
+          return "product, port=" + port;
+      }
+  }
+```
+
+controller层 `ProductController.java`
+
+```java
+  @Controller
+  @RequestMapping("product")
+  public class ProductController {
+  
+      private final Logger logger = LoggerFactory.getLogger(this.getClass());
+  
+      @Value("${server.port}")
+      private String port;
+  
+      @RequestMapping("getProductName")
+      @ResponseBody
+      public String getProductName(String id){
+          logger.info("called method getProductName(String id), port={}, id={}", port, id);
+          Map<String,String> productNameMap = new HashMap<>();
+  
+          productNameMap.put("1", "T恤");
+          productNameMap.put("2", "短裙");
+          productNameMap.put("3", "超短裙");
+          productNameMap.put("4", "短裤");
+  
+          return productNameMap.get(id);
+  
+      }
+  }
+```
+
+user服务创建controller层 `UserController.java` 并创建接口类 `ProductFeign.java`
+
+```java
+  @Controller
+  @RequestMapping("user")
+  public class UserController {
+  
+      @Autowired
+      private ProductFeign productFeign;
+  
+      @RequestMapping("getProduct")
+      @ResponseBody
+      public String getProduct(String id){
+          return productFeign.getProductName(id);
+      }
+  }
+```
+
+```java
+  @FeignClient("PRODUCT")
+  public interface ProductFeign {
+  
+      @RequestMapping("/product/getProductName")
+      String getProductName(@RequestParam("id") String id);
+  }
+```
+
+`@FeignClient("PRODUCT")` openFeign结合注册中心， PRODUCT为product服务
+注册在服务中心的名称。
+远程调用参数传递需要指定参数的传递方式：
+1、@RequestParam()
+2、@PathVariable()
+
 ### 4. 服务熔断以及限流 sentinel
 
 ### 5. 网关服务 gateway

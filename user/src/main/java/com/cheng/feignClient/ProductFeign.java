@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author create by chengnian On 2021/9/19 22:06
  */
-@FeignClient("PRODUCT")
+@FeignClient(value = "PRODUCT", fallback = ProductFeignFallback.class)
 public interface ProductFeign {
 
     @RequestMapping("/product/getProductName")
